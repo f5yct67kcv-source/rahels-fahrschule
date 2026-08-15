@@ -39,7 +39,7 @@ Die Seite ist bewusst aus der Suche genommen, solange sie nicht freigegeben ist.
 ## Offen
 
 - **Preise.** Fahrlektion, Mehrfachabo und VKU stehen als sichtbare Lücke auf der Seite. Sobald die Zahlen bestätigt sind, kommen sie in den Abschnitt `#preise`.
-- **Fotos.** Zwei Bildflächen sind angelegt und beschriftet: eine quer für Auto und Umgebung, eine hoch für das Porträt. Bis dahin zeigen sie den Hinweis, dass das Foto folgt. Keine KI-Bilder.
+- **Foto.** Eine einzige Bildfläche, im Hero, hochformatig 4:5. Gebraucht wird ein Porträt von Rahel, auf dem sie klar die Hauptperson ist, am oder beim Auto, bei Tageslicht. Kein Text ins Bild, der steht darüber. Zweitwichtigstes Motiv wäre eine Fahrsituation von der Beifahrerseite. Keine KI-Bilder.
 - **Impressum.** Postadresse, allfällige UID und Rechtsform fehlen, bis entschieden ist, was davon öffentlich stehen soll.
 - **Datenschutz.** Der Hosting-Anbieter ist im Text noch nicht benannt.
 - **Logo.** Lenkrad, Wortmarke und Schreibschrift sind aus den Fotos der Autobeschriftung nachgebaut, das Lenkrad als SVG, die Schrift gesetzt. Taucht die originale Vektordatei des Beschrifters auf, wird das Lockup ersetzt.
