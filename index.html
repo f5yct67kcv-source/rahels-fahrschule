@@ -210,10 +210,13 @@ p{ margin:0; }
 /* ---------- Fakten- und Preiszeilen (dieselbe Zeile, zwei Zwecke) ---------- */
 .preise,.fakten{ border-top:1px solid var(--linie); }
 .preis,.faktum{
-  display:flex; align-items:baseline; justify-content:space-between; gap:2rem;
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:clamp(1rem,4vw,2rem); flex-wrap:wrap;
   padding-block:clamp(1.35rem,3vw,1.8rem);
   border-bottom:1px solid var(--linie);
 }
+/* Lange Werte brechen um, statt aus der Zeile zu laufen. */
+.preis dt,.faktum dt,.preis dd,.faktum dd{ min-width:0; overflow-wrap:break-word; }
 .preis dt,.faktum dt{ font-weight:500; font-size:clamp(1.05rem,2.2vw,1.25rem); letter-spacing:-.015em; }
 .preis dd,.faktum dd{ margin:0; color:var(--grau); font-size:1rem; text-align:right; }
 .faktum dt{ font-size:1.0625rem; font-weight:500; color:var(--grau); }
@@ -617,7 +620,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
       <dl class="fakten">
         <div class="faktum"><dt>Name</dt><dd>Rahel Schaffner</dd></div>
         <div class="faktum"><dt>Fahrlehrerin</dt><dd>Kategorie B</dd></div>
-        <div class="faktum"><dt>Zusatzberechtigung</dt><dd>Verkehrskundeunterricht</dd></div>
+        <div class="faktum"><dt>Zusatzberechtigung</dt><dd>Verkehrskunde&nbsp;VKU</dd></div>
         <div class="faktum"><dt>Eingetragen</dt><dd>Fahrlehrerliste Kanton BL</dd></div>
         <div class="faktum"><dt>Ausbildung</dt><dd><span class="offen">folgt</span></dd></div>
         <div class="faktum"><dt>Fahrlehrerin seit</dt><dd><span class="offen">folgt</span></dd></div>
