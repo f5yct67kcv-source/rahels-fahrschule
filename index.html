@@ -148,10 +148,9 @@ p{ margin:0; }
 .menu{
   position:fixed; inset:0; z-index:50;
   background:var(--grund);
-  /* Feste Werte mit Absicht. calc() mit clamp() darin lieferte hier
-     3.9px statt 84px, der erste Eintrag lag dadurch hinter der Kopfzeile.
-     Das Panel erscheint ohnehin nur unter 720px, dort reicht ein fester
-     Abstand: 60px Kopfzeile plus Luft. Inline gepruefte Werte. */
+  /* 60px Kopfzeile plus Luft. Der Zustandsname heisst bewusst nicht
+     "offen": so heisst schon die Pille fuer die folgt-Platzhalter, und das
+     Panel hat deren padding und den gestrichelten Rahmen geerbt. */
   padding-top:88px;
   padding-inline:1.35rem;
   padding-bottom:2rem;
@@ -161,7 +160,7 @@ p{ margin:0; }
   transition:transform .5s cubic-bezier(.79,.14,.15,.86),
              visibility .5s cubic-bezier(.79,.14,.15,.86);
 }
-.menu.offen{ transform:translateX(0); visibility:visible; }
+.menu.sichtbar{ transform:translateX(0); visibility:visible; }
 @supports (padding-bottom: env(safe-area-inset-bottom)){
   .menu{ padding-bottom:calc(2rem + env(safe-area-inset-bottom)); }
 }
@@ -1016,13 +1015,13 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
       return panel.querySelectorAll('a[href], button:not([disabled])');
     }
 
-    function istOffen(){ return panel.classList.contains('offen'); }
+    function istOffen(){ return panel.classList.contains('sichtbar'); }
 
     function auf(){
       zuletztFokussiert = document.activeElement;
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
-      panel.classList.add('offen');
+      panel.classList.add('sichtbar');
       knopf.setAttribute('aria-expanded', 'true');
       knopf.setAttribute('aria-label', 'Menü schliessen');
       /* Erst fokussieren, wenn die Sichtbarkeit umgeschlagen ist. Ein
@@ -1039,7 +1038,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
     }
 
     function zu(fokusZurueck){
-      panel.classList.remove('offen');
+      panel.classList.remove('sichtbar');
       knopf.setAttribute('aria-expanded', 'false');
       knopf.setAttribute('aria-label', 'Menü öffnen');
       document.documentElement.style.overflow = '';
