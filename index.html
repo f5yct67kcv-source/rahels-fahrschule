@@ -140,32 +140,29 @@ p{ margin:0; }
 .menu-knopf[aria-expanded="true"] .strich-o{ transform:translateY(4px) rotate(45deg); }
 .menu-knopf[aria-expanded="true"] .strich-u{ transform:translateY(-4px) rotate(-45deg); }
 
+/* Das Panel faehrt von rechts herein. Kurve und Dauer sind von bio-mio.ch
+   uebernommen, dort am 2026-08-15 aus den berechneten Stilen ausgelesen:
+   transform und visibility, 0.5s, cubic-bezier(.79,.14,.15,.86).
+   visibility statt display, damit die Verweise geschlossen nicht in der
+   Tabreihenfolge liegen und der Uebergang trotzdem laeuft. */
 .menu{
   position:fixed; inset:0; z-index:50;
   background:var(--grund);
   padding:calc(60px + clamp(1.5rem,6vw,3rem)) var(--rand) calc(env(safe-area-inset-bottom) + 2rem);
-  overflow-y:auto; overscroll-behavior:contain;
+  overflow:hidden auto; overscroll-behavior:contain;
   display:flex; flex-direction:column; gap:2.5rem;
-  opacity:0; transition:opacity .28s var(--ease);
+  transform:translateX(100%); visibility:hidden;
+  transition:transform .5s cubic-bezier(.79,.14,.15,.86),
+             visibility .5s cubic-bezier(.79,.14,.15,.86);
 }
-.menu[hidden]{ display:none; }
-.menu.offen{ opacity:1; }
+.menu.offen{ transform:translateX(0); visibility:visible; }
+
 .menu nav{ display:flex; flex-direction:column; align-items:flex-start; gap:0; }
 .menu nav a{
   display:block; width:100%; padding-block:.72rem;
   font-size:clamp(1.5rem,6.5vw,2rem); font-weight:600; letter-spacing:-.03em;
   color:var(--weiss); text-decoration:none;
-  opacity:0; transform:translateY(10px);
 }
-.menu.offen nav a{ opacity:1; transform:none; transition:opacity .5s var(--ease), transform .5s var(--ease); }
-.menu.offen nav a:nth-child(1){ transition-delay:.04s; }
-.menu.offen nav a:nth-child(2){ transition-delay:.08s; }
-.menu.offen nav a:nth-child(3){ transition-delay:.12s; }
-.menu.offen nav a:nth-child(4){ transition-delay:.16s; }
-.menu.offen nav a:nth-child(5){ transition-delay:.2s; }
-.menu.offen nav a:nth-child(6){ transition-delay:.24s; }
-.menu.offen nav a:nth-child(7){ transition-delay:.28s; }
-.menu.offen nav a:nth-child(8){ transition-delay:.32s; }
 .menu nav a:active{ color:var(--blau-hell); }
 .menu-aktionen{ margin-top:auto; padding-top:2rem; border-top:1px solid var(--linie); display:grid; gap:.7rem; }
 
@@ -175,8 +172,8 @@ p{ margin:0; }
 }
 @media (min-width:721px){ .menu{ display:none !important; } }
 @media (prefers-reduced-motion:reduce){
-  .menu,.menu nav a,.menu-knopf path{ transition:none !important; }
-  .menu nav a{ opacity:1; transform:none; }
+  .menu{ transition:visibility .01s; }
+  .menu-knopf path{ transition:none !important; }
 }
 
 /* ---------- Knöpfe ---------- */
@@ -458,7 +455,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
   </div>
 </header>
 
-<div class="menu" id="menu" hidden>
+<div class="menu" id="menu">
   <nav aria-label="Alle Bereiche">
     <a href="#warum">Warum bei mir</a>
     <a href="#fahrstunden">Fahrstunden</a>
@@ -1010,12 +1007,13 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
       return panel.querySelectorAll('a[href], button:not([disabled])');
     }
 
+    function istOffen(){ return panel.classList.contains('offen'); }
+
     function auf(){
       zuletztFokussiert = document.activeElement;
-      panel.hidden = false;
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
-      requestAnimationFrame(function(){ panel.classList.add('offen'); });
+      panel.classList.add('offen');
       knopf.setAttribute('aria-expanded', 'true');
       knopf.setAttribute('aria-label', 'Menü schliessen');
       var erstes = fokussierbare()[0];
@@ -1028,14 +1026,11 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
       knopf.setAttribute('aria-label', 'Menü öffnen');
       document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
-      var fertig = function(){ panel.hidden = true; };
-      if (matchMedia('(prefers-reduced-motion: reduce)').matches) fertig();
-      else setTimeout(fertig, 280);
       if (fokusZurueck !== false && zuletztFokussiert) zuletztFokussiert.focus();
     }
 
     knopf.addEventListener('click', function(){
-      if (knopf.getAttribute('aria-expanded') === 'true') zu(); else auf();
+      if (istOffen()) zu(); else auf();
     });
 
     /* Ein Sprungziel schliesst das Menue, der Fokus bleibt beim Ziel. */
@@ -1047,7 +1042,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
     });
 
     document.addEventListener('keydown', function(e){
-      if (panel.hidden) return;
+      if (!istOffen()) return;
       if (e.key === 'Escape'){ e.preventDefault(); zu(); return; }
       if (e.key !== 'Tab') return;
       var f = fokussierbare();
@@ -1062,7 +1057,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
 
     /* Wird das Fenster breit, verschwindet der Knopf: Menue mitschliessen. */
     matchMedia('(min-width: 721px)').addEventListener('change', function(e){
-      if (e.matches && !panel.hidden) zu(false);
+      if (e.matches && istOffen()) zu(false);
     });
   })();
 
