@@ -1016,8 +1016,15 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
       panel.classList.add('offen');
       knopf.setAttribute('aria-expanded', 'true');
       knopf.setAttribute('aria-label', 'Menü schliessen');
-      var erstes = fokussierbare()[0];
-      if (erstes) erstes.focus();
+      /* Erst fokussieren, wenn die Sichtbarkeit umgeschlagen ist. Ein
+         Element mit visibility:hidden nimmt keinen Fokus an, der Aufruf
+         verpufft dann still und der Fokus bleibt am Seitenanfang. */
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          var erstes = fokussierbare()[0];
+          if (erstes && istOffen()) erstes.focus();
+        });
+      });
     }
 
     function zu(fokusZurueck){
