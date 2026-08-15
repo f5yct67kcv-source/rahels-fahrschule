@@ -218,9 +218,12 @@ p{ margin:0; }
   background:var(--flaeche); border-radius:var(--kurve);
   overflow:hidden; display:grid; place-items:center;
 }
-.bild-hero{ aspect-ratio:16/10; }
+/* Das Portraet im Hero ist hochformatig und bleibt es auch auf dem
+   Schreibtisch: ein Mensch im Querformat wird klein, und die Person ist
+   hier das Argument. Breite gedeckelt, damit es nicht ins Plakathafte
+   kippt. */
+.bild-hero{ aspect-ratio:4/5; max-width:30rem; margin-inline:auto; }
 .bild-hoch{ aspect-ratio:4/5; }
-@media (max-width:640px){ .bild-hero{ aspect-ratio:4/5; } }
 .bild::after{ content:''; position:absolute; inset:0; border-radius:inherit; border:1px solid var(--linie); pointer-events:none; }
 .bild-inhalt{ text-align:center; color:var(--grau-still); display:grid; justify-items:center; gap:.9rem; padding:2rem; }
 .bild-inhalt .rad{ width:44px; height:44px; opacity:.3; }
@@ -515,6 +518,14 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
       <p class="leise hero-fuss">Am schnellsten erreichst du mich per WhatsApp.</p>
     </div>
 
+    <!--
+      TODO Rahel: Hier gehoert ihr Portraet hin, und es ist das wichtigste
+      fehlende Stueck der Seite. Gebraucht wird eine Aufnahme, auf der sie
+      klar die Hauptperson ist, hochformatig 4:5, am oder beim Auto, bei
+      Tageslicht. Kein Text ins Bild, der steht darueber.
+      Zweitwichtigstes Motiv waere eine echte Fahrsituation von der
+      Beifahrerseite. Keine KI-Bilder neben ihrem Namen.
+    -->
     <div class="bahn hero-bild">
       <figure class="bild bild-hero" style="margin-block:0;">
         <div class="bild-inhalt">
@@ -522,7 +533,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
             <circle cx="50" cy="50" r="43"/><circle cx="50" cy="50" r="8.5"/>
             <path d="M41.5 50H7"/><path d="M58.5 50H93"/><path d="M50 58.5V93"/>
           </svg>
-          <span>Foto folgt</span>
+          <span>Porträt von Rahel folgt</span>
         </div>
       </figure>
     </div>
@@ -536,11 +547,9 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
         <p class="mass still">Ich bin Rahel. Wenn du bei mir Fahrstunden nimmst, sitze jedes Mal ich neben dir. Ich betreue bewusst nur eine überschaubare Zahl von Fahrschülerinnen und Fahrschülern gleichzeitig. Keine wechselnden Fahrlehrer, kein fremdes Auto kurz vor der Prüfung, und du musst nichts zweimal erklären.</p>
       </div>
 
-      <figure class="bild bild-hoch" style="margin-top:0; max-width:44rem;">
-        <div class="bild-inhalt">
-          <span>Porträt folgt</span>
-        </div>
-      </figure>
+      <!-- Die zweite Bildflaeche ist hier bewusst weg. Das Portraet sitzt
+           jetzt im Hero, wo es die Aussage traegt. Zwei graue Kaesten auf
+           einer Seite sehen nach Vorlage aus, einer nach Baustelle. -->
 
       <!--
         TODO Rahel: Unterrichtsstil. Der wichtigste fehlende Inhalt der ganzen
