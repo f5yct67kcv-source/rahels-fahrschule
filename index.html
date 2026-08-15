@@ -148,11 +148,12 @@ p{ margin:0; }
 .menu{
   position:fixed; inset:0; z-index:50;
   background:var(--grund);
-  /* Langform statt Kurzschreibweise: mit env() im calc() innerhalb des
-     padding-Kurzworts kamen hier verworfene Werte heraus, der erste Eintrag
-     lag dann hinter der Kopfzeile. */
-  padding-top:calc(60px + clamp(1.5rem, 6vw, 3rem));
-  padding-inline:var(--rand);
+  /* Feste Werte mit Absicht. calc() mit clamp() darin lieferte hier
+     3.9px statt 84px, der erste Eintrag lag dadurch hinter der Kopfzeile.
+     Das Panel erscheint ohnehin nur unter 720px, dort reicht ein fester
+     Abstand: 60px Kopfzeile plus Luft. Inline gepruefte Werte. */
+  padding-top:88px;
+  padding-inline:1.35rem;
   padding-bottom:2rem;
   overflow:hidden auto; overscroll-behavior:contain;
   display:flex; flex-direction:column; gap:2.5rem;
