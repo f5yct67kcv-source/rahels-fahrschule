@@ -5,7 +5,7 @@
 
 :root{
   --grund:#08090A; --linie:#23272E; --weiss:#F4F6F8;
-  --grau:#9AA1AB; --grau-still:#6E757F;
+  --grau:#9AA1AB; --grau-still:#8B929C;
   --blau:#0F76D8; --blau-hell:#4FA6FF;
   --rand:clamp(1.35rem,5vw,3.5rem);
   color-scheme:dark; accent-color:var(--blau); caret-color:var(--blau-hell);
