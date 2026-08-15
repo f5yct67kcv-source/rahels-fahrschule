@@ -105,6 +105,10 @@ p{ margin:0; }
 
 .marke-gross{ font-size:clamp(2.2rem,8.5vw,3.6rem); }
 .marke-klein{ font-size:1.0625rem; }
+/* Der Fuss traegt das Lockup mit Schreibschrift. Die laeuft auf .62em,
+   deshalb braucht er mehr Grundgroesse, sonst faellt "Fahrschule" unter
+   die Lesbarkeitsgrenze. */
+.marke-fuss{ font-size:1.6rem; }
 
 /* ---------- Kopf ---------- */
 .kopf{
@@ -621,7 +625,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
 
 <footer class="fuss">
   <div class="bahn">
-    <span class="lockup marke-klein" style="align-items:flex-start;">
+    <span class="lockup marke-fuss" style="align-items:flex-start;">
       <span class="lockup-reihe">
         <svg class="rad" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
           <circle cx="50" cy="50" r="43"/><circle cx="50" cy="50" r="8.5"/>
@@ -629,7 +633,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
         </svg>
         <span class="wortmarke">Rahe<span class="tafel" aria-hidden="true">L</span>s</span>
       </span>
-      <span class="script" style="margin-left:2.1em;">Fahrschule</span>
+      <span class="script" style="margin-left:1.9em;">Fahrschule</span>
     </span>
     <div class="fuss-links">
       <a href="impressum.html">Impressum</a>
