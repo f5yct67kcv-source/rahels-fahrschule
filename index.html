@@ -187,18 +187,41 @@ p{ margin:0; }
 }
 .posten p{ max-width:54ch; color:var(--grau); }
 
-/* ---------- Weg ---------- */
-.weg{ display:grid; gap:0; border-top:1px solid var(--linie); counter-reset:etappe; }
-.etappe{
-  position:relative; display:grid; gap:.55rem;
-  grid-template-columns:1fr; align-items:start;
-  padding-block:clamp(1.9rem,4vw,2.6rem);
-  border-bottom:1px solid var(--linie);
+/* ---------- Strecke zum Fuehrerausweis ---------- */
+.strecke{ list-style:none; margin:0; padding:0; --marke:46px; }
+@media (min-width:820px){ .strecke{ --marke:54px; } }
+
+.halt{
+  position:relative; display:grid;
+  grid-template-columns:var(--marke) minmax(0,1fr);
+  gap:clamp(1.1rem,3.5vw,1.9rem);
+  padding-bottom:clamp(2.4rem,5.5vw,3.4rem);
 }
-@media (min-width:820px){
-  .etappe{ grid-template-columns:minmax(0,22rem) minmax(0,1fr); gap:3.5rem; }
+.halt:last-child{ padding-bottom:0; }
+/* Die Schiene laeuft von Marke zu Marke und endet an der letzten. */
+.halt::before{
+  content:''; position:absolute; width:1px; background:var(--linie);
+  left:calc(var(--marke) / 2); top:var(--marke); bottom:0;
 }
-.etappe p{ color:var(--grau); max-width:54ch; }
+.halt:last-child::before{ display:none; }
+
+.halt-marke{
+  width:var(--marke); height:var(--marke); border-radius:99px;
+  border:1px solid var(--linie); background:var(--grund);
+  display:grid; place-items:center; color:var(--grau);
+}
+.halt-marke svg{
+  width:42%; height:42%; fill:none; stroke:currentColor;
+  stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;
+}
+.halt.bei-mir .halt-marke{ border-color:var(--blau); color:var(--blau-hell); }
+
+.halt-inhalt{ padding-top:.3rem; }
+.halt-inhalt h3{ margin-bottom:.5rem; }
+.halt-nr{ color:var(--grau-still); font-weight:500; font-variant-numeric:tabular-nums; margin-right:.5em; }
+.halt-inhalt p{ color:var(--grau); max-width:54ch; }
+.halt-inhalt .wer{ margin:0 0 .5rem; }
+
 .wer{
   display:inline-flex; align-items:center; gap:.45em;
   font-size:.8125rem; font-weight:600; letter-spacing:.02em;
@@ -510,54 +533,136 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
     <div class="bahn">
       <div class="kopfzeile">
         <h2>Der Weg zum<br>Führerausweis.</h2>
-        <p class="mass still">Zur Orientierung, wo die Fahrstunden und der VKU im Ganzen liegen. Zwei der fünf Etappen gehst du mit mir, die anderen erledigst du woanders.</p>
+        <p class="mass still">Zehn Etappen vom Nothelferkurs bis zum Ausweis. Zwei davon gehst du mit mir, die anderen erledigst du woanders.</p>
       </div>
 
-      <!-- Beschreibung der gesetzlichen Etappen bewusst unveraendert
-           uebernommen. Wird vor der Veroeffentlichung separat geprueft.
-           Die Etappen bleiben kurz: Details zu Fahrstunden und VKU stehen
-           weiter oben in den eigenen Abschnitten. -->
-      <div class="weg">
-        <article class="etappe">
-          <div>
-            <h3>Nothelferkurs und Sehtest</h3>
-            <span class="wer"><i class="punkt"></i>Woanders</span>
-          </div>
-          <p>Brauchst du, bevor du den Lernfahrausweis beantragen kannst.</p>
-        </article>
+      <!--
+        RECHTLICHE ANGABEN: Fristen und Ablauf recherchiert am 2026-08-15.
+        Belegt sind: Nothelferzertifikat sechs Jahre gueltig; Sehtest beim
+        Einreichen des Antrags hoechstens 24 Monate alt; Lernfahrausweis ab
+        17 und 24 Monate gueltig; Theoriepruefung 50 Fragen; VKU acht
+        Lektionen und seit 1.1.2021 unbefristet gueltig, muss vor der
+        praktischen Pruefung erledigt sein; praktische Pruefung ab 18, wer
+        den Lernfahrausweis vor dem 20. Altersjahr erwirbt, muss ihn zwoelf
+        Monate besitzen; Fuehrerausweis auf Probe drei Jahre mit einem
+        Weiterbildungstag.
+        TODO: Vor der Veroeffentlichung mit Rahel und dem Strassenverkehrsamt
+        Baselland gegenlesen. Kantonale Abweichungen sind moeglich, besonders
+        bei Formularbezug, Wohnsitzbestaetigung und Anmeldeweg.
+      -->
+      <ol class="strecke">
 
-        <article class="etappe">
-          <div>
-            <h3>Theorieprüfung</h3>
+        <li class="halt">
+          <span class="halt-marke" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="6.5" width="18" height="13.5" rx="2"/><path d="M9 6.5V4.5h6v2"/><path d="M12 10.5v6M9 13.5h6"/></svg>
+          </span>
+          <div class="halt-inhalt">
+            <span class="wer"><i class="punkt"></i>Woanders</span>
+            <h3><span class="halt-nr">1</span>Nothelferkurs</h3>
+            <p>Erste Hilfe für den Strassenverkehr. Das Zertifikat ist sechs Jahre gültig, und ohne kommst du nicht an den Lernfahrausweis.</p>
+          </div>
+        </li>
+
+        <li class="halt">
+          <span class="halt-marke" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+          </span>
+          <div class="halt-inhalt">
+            <span class="wer"><i class="punkt"></i>Optiker</span>
+            <h3><span class="halt-nr">2</span>Sehtest</h3>
+            <p>Beim Optiker oder beim Augenarzt. Das Ergebnis kommt auf dein Antragsformular und darf beim Einreichen höchstens 24 Monate alt sein.</p>
+          </div>
+        </li>
+
+        <li class="halt">
+          <span class="halt-marke" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="4.5" y="3" width="15" height="18" rx="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/></svg>
+          </span>
+          <div class="halt-inhalt">
+            <span class="wer"><i class="punkt"></i>Gemeinde</span>
+            <h3><span class="halt-nr">3</span>Antrag ausfüllen</h3>
+            <p>Das Formular bekommst du beim Strassenverkehrsamt oder von mir. Wohnsitz bestätigen lassen bei der Einwohnergemeinde oder auf dem Polizeiposten, aktuelles Passfoto dazu.</p>
+          </div>
+        </li>
+
+        <li class="halt">
+          <span class="halt-marke" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3.2 7 8.8 6 8.8-6"/></svg>
+          </span>
+          <div class="halt-inhalt">
             <span class="wer"><i class="punkt"></i>Strassenverkehrsamt</span>
+            <h3><span class="halt-nr">4</span>Antrag einschicken</h3>
+            <p>Vollständig ausgefüllt ans Strassenverkehrsamt Baselland. Danach bekommst du die Anmeldekarte für die Theorieprüfung.</p>
           </div>
-          <p>Antrag bei der Gemeinde, Prüfung beim Strassenverkehrsamt Baselland. Danach bekommst du den Lernfahrausweis.</p>
-        </article>
+        </li>
 
-        <article class="etappe">
-          <div>
-            <h3>Verkehrskunde&nbsp;VKU</h3>
+        <li class="halt">
+          <span class="halt-marke" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9.5 4V2.8h5V4"/><path d="m9.5 12.5 2 2 4-4.5"/></svg>
+          </span>
+          <div class="halt-inhalt">
+            <span class="wer"><i class="punkt"></i>Strassenverkehrsamt</span>
+            <h3><span class="halt-nr">5</span>Theorieprüfung</h3>
+            <p>50 Fragen. Anmelden kannst du dich, sobald du dich bereit fühlst.</p>
+          </div>
+        </li>
+
+        <li class="halt">
+          <span class="halt-marke" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><circle cx="8.5" cy="11" r="2"/><path d="M14 10.5h4M14 14h4M5.4 16c.7-1.3 1.8-2 3.1-2s2.4.7 3.1 2"/></svg>
+          </span>
+          <div class="halt-inhalt">
+            <span class="wer"><i class="punkt"></i>Strassenverkehrsamt</span>
+            <h3><span class="halt-nr">6</span>Lernfahrausweis</h3>
+            <p>Kommt nach bestandener Theorieprüfung und ist 24 Monate gültig. Beantragen kannst du ihn ab 17.</p>
+          </div>
+        </li>
+
+        <li class="halt bei-mir">
+          <span class="halt-marke" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.1"/><path d="M9.9 12H3M14.1 12H21M12 14.1V21"/></svg>
+          </span>
+          <div class="halt-inhalt">
             <span class="wer bei-ihr"><i class="punkt"></i>Bei mir</span>
+            <h3><span class="halt-nr">7</span>Fahrstunden</h3>
+            <p>Ab jetzt darfst du fahren. Wir üben, so lange du brauchst, und ich sage dir ehrlich, wo du stehst.</p>
           </div>
-          <p>Muss erledigt sein, bevor du dich zur praktischen Prüfung anmelden kannst.</p>
-        </article>
+        </li>
 
-        <article class="etappe">
-          <div>
-            <h3>Fahrstunden und Prüfung</h3>
+        <li class="halt bei-mir">
+          <span class="halt-marke" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M12 16.5V21M8.5 21h7"/><path d="M7.5 8.5h9M7.5 12h5.5"/></svg>
+          </span>
+          <div class="halt-inhalt">
             <span class="wer bei-ihr"><i class="punkt"></i>Bei mir</span>
+            <h3><span class="halt-nr">8</span>Verkehrskunde&nbsp;VKU</h3>
+            <p>Acht Lektionen. Seit 2021 unbefristet gültig, muss aber erledigt sein, bevor du zur praktischen Prüfung antrittst.</p>
           </div>
-          <p>Wir fahren, bis es sitzt. Danach melde ich dich zur Prüfung an.</p>
-        </article>
+        </li>
 
-        <article class="etappe">
-          <div>
-            <h3>Nach der Prüfung</h3>
+        <li class="halt">
+          <span class="halt-marke" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5.5 21V3.5"/><path d="M5.5 4.5h11.5l-2.2 3.6 2.2 3.6H5.5"/></svg>
+          </span>
+          <div class="halt-inhalt">
+            <span class="wer"><i class="punkt"></i>Strassenverkehrsamt</span>
+            <h3><span class="halt-nr">9</span>Praktische Prüfung</h3>
+            <p>Frühestens ab 18. Wer den Lernfahrausweis vor dem 20. Geburtstag bekommen hat, muss ihn zwölf Monate besitzen. Ich melde dich an, wenn es so weit ist.</p>
+          </div>
+        </li>
+
+        <li class="halt">
+          <span class="halt-marke" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m8 12.2 2.6 2.6L16.2 9"/></svg>
+          </span>
+          <div class="halt-inhalt">
             <span class="wer"><i class="punkt"></i>Woanders</span>
+            <h3><span class="halt-nr">10</span>Führerausweis auf Probe</h3>
+            <p>Drei Jahre auf Probe. In dieser Zeit gehört ein Weiterbildungstag dazu, den ich nicht anbiete.</p>
           </div>
-          <p>Führerausweis auf Probe für drei Jahre, dazu ein Weiterbildungstag.</p>
-        </article>
-      </div>
+        </li>
+
+      </ol>
     </div>
   </section>
 
