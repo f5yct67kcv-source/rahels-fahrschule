@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rahels Fahrschule – Fahrstunden und Verkehrskunde in Gelterkinden</title>
-<meta name="description" content="Fahrschule in Gelterkinden BL. Fahrstunden Kategorie B und Verkehrskundeunterricht bei Rahel Schaffner. Schreib ihr über WhatsApp oder frag einen Termin an.">
+<meta name="description" content="Fahrschule in Gelterkinden BL. Fahrstunden Kategorie B und Verkehrskundeunterricht bei Rahel Schaffner. Terminanfrage über WhatsApp.">
 <meta name="theme-color" content="#08090A">
 <!-- ENTWURFSPHASE: Rahel weiss noch nichts von der Seite. Solange sie nicht
      zugestimmt hat, darf ihr Name nicht in der Google-Suche auftauchen.
@@ -207,15 +207,17 @@ p{ margin:0; }
 .wer.bei-ihr{ color:var(--blau-hell); }
 .punkt{ width:6px; height:6px; border-radius:99px; background:currentColor; flex:none; }
 
-/* ---------- Preise ---------- */
-.preise{ border-top:1px solid var(--linie); }
-.preis{
+/* ---------- Fakten- und Preiszeilen (dieselbe Zeile, zwei Zwecke) ---------- */
+.preise,.fakten{ border-top:1px solid var(--linie); }
+.preis,.faktum{
   display:flex; align-items:baseline; justify-content:space-between; gap:2rem;
   padding-block:clamp(1.35rem,3vw,1.8rem);
   border-bottom:1px solid var(--linie);
 }
-.preis dt{ font-weight:500; font-size:clamp(1.05rem,2.2vw,1.25rem); letter-spacing:-.015em; }
-.preis dd{ margin:0; color:var(--grau-still); font-size:1rem; }
+.preis dt,.faktum dt{ font-weight:500; font-size:clamp(1.05rem,2.2vw,1.25rem); letter-spacing:-.015em; }
+.preis dd,.faktum dd{ margin:0; color:var(--grau); font-size:1rem; text-align:right; }
+.faktum dt{ font-size:1.0625rem; font-weight:500; color:var(--grau); }
+.faktum dd{ color:var(--weiss); font-weight:500; }
 .offen{
   display:inline-flex; align-items:center; gap:.6em;
   padding:.3em .8em; border-radius:99px;
@@ -340,6 +342,12 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
     Seed 524ecf07, Runde 4, Karte "logogefuehrt" plus Aufbau "fotogefuehrt".
   FINISH: unreviewed and undocumented is unfinished; this build ends with the
     finish review, the verdict, and DESIGN.md
+
+  ERZAEHLPERSPEKTIVE: Rahel spricht in der Ich-Form, der Besucher wird geduzt.
+    Festgelegt am 2026-08-15. Die Seite geht nicht live an sie, sondern als
+    Entwurf: sie liest ihre Saetze, aendert sie und hat das letzte Wort.
+    Jede neue Zeile in derselben Stimme schreiben. Ausgenommen sind nur die
+    vorgefertigten WhatsApp-Texte, die schreibt der Besucher an Rahel.
 -->
 
 <header class="kopf" id="kopf">
@@ -357,8 +365,8 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
       </span>
     </a>
     <nav aria-label="Seitenbereiche">
-      <a class="weg-klein" href="#angebot">Angebot</a>
-      <a class="weg-klein" href="#weg">Weg zum Ausweis</a>
+      <a class="weg-klein" href="#fahrstunden">Fahrstunden</a>
+      <a class="weg-klein" href="#preise">Preise</a>
       <a href="#termin">Termin</a>
     </nav>
   </div>
@@ -393,7 +401,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
         <a class="knopf knopf-linie" href="#termin">Termin anfragen</a>
       </div>
 
-      <p class="leise hero-fuss">Am Telefon ist sie selten erreichbar. Schreiben geht schneller.</p>
+      <p class="leise hero-fuss">Am schnellsten erreichst du mich per WhatsApp.</p>
     </div>
 
     <div class="bahn hero-bild">
@@ -409,42 +417,88 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
     </div>
   </section>
 
-  <!-- ============ Wer ============ -->
-  <section id="wer">
+  <!-- ============ Warum bei Rahel ============ -->
+  <section id="warum">
     <div class="bahn">
       <div class="kopfzeile">
         <h2>Eine Fahrlehrerin,<br>ein Auto, dieselbe<br>Person in jeder Lektion.</h2>
-        <p class="mass still">Rahel Schaffner unterrichtet in Gelterkinden. Sie fährt neben ihrem Beruf, deshalb sind es wenige Schülerinnen und Schüler gleichzeitig und deshalb erreichst du sie schriftlich am besten.</p>
+        <p class="mass still">Ich bin Rahel. Wenn du bei mir Fahrstunden nimmst, sitze jedes Mal ich neben dir. Ich betreue bewusst nur eine überschaubare Zahl von Fahrschülerinnen und Fahrschülern gleichzeitig. Keine wechselnden Fahrlehrer, kein fremdes Auto kurz vor der Prüfung, und du musst nichts zweimal erklären.</p>
       </div>
+
       <figure class="bild bild-hoch" style="margin-top:0; max-width:44rem;">
         <div class="bild-inhalt">
           <span>Porträt folgt</span>
         </div>
       </figure>
+
+      <!--
+        TODO Rahel: Unterrichtsstil. Der wichtigste fehlende Inhalt der ganzen
+        Seite. Hier gehoert hin, wie es ist, bei ihr fahren zu lernen. Nicht
+        selbst formulieren, sondern mit ihren eigenen Antworten fuellen, in
+        der Ich-Form wie der Rest der Seite:
+          - Wie erklaert sie etwas, das nicht auf Anhieb sitzt?
+          - Wie geht sie mit Fehlern um?
+          - Was macht sie mit jemandem, der nervoes ist?
+          - Wie direkt sagt sie, was nicht stimmt?
+          - Was ist ihr beim Fahrenlernen am wichtigsten?
+          - Bei welchen Schuelern funktioniert ihre Art besonders gut?
+        Sobald die Antworten da sind, dieses Kommentarzeichen entfernen und
+        den Block darunter fuellen. Struktur steht, Text fehlt.
+
+        <div class="kopfzeile" style="margin-top:var(--luft);">
+          <h2>Wie es ist, bei mir<br>fahren zu lernen.</h2>
+          <p class="mass still">HIER RAHELS EIGENE WORTE, IN DER ICH-FORM</p>
+        </div>
+      -->
     </div>
   </section>
 
   <hr class="strich">
 
-  <!-- ============ Angebot ============ -->
-  <section id="angebot">
+  <!-- ============ Fahrstunden ============ -->
+  <section id="fahrstunden">
     <div class="bahn">
-      <div class="kopfzeile"><h2>Das gibt es bei ihr.</h2></div>
-
-      <div class="angebot">
-        <article class="posten">
-          <h3>Fahrstunden, Kategorie&nbsp;B</h3>
-          <p>Vom ersten Mal hinter dem Steuer bis zur praktischen Prüfung. So viele Lektionen, wie du brauchst, und keine Vorgabe, wie viele das sein müssen.</p>
-        </article>
-        <article class="posten">
-          <h3>Verkehrskunde&nbsp;VKU</h3>
-          <p>Die acht obligatorischen Lektionen, die du vor der praktischen Prüfung gemacht haben musst. Rahel hat die Berechtigung dafür.</p>
-        </article>
-        <article class="posten">
-          <h3>Was sie nicht macht</h3>
-          <p>Nothelferkurs, Theorieprüfung und den Weiterbildungstag nach der Prüfung machst du woanders. Frag sie, sie sagt dir wo.</p>
-        </article>
+      <div class="kopfzeile">
+        <h2>Fahrstunden.</h2>
+        <p class="mass still">Kategorie B, vom ersten Mal hinter dem Steuer bis zur praktischen Prüfung. So viele Lektionen, wie du brauchst.</p>
       </div>
+
+      <!-- TODO Rahel: Jede Zeile mit "folgt" braucht eine echte Angabe.
+           Zeilen, die sich als irrelevant herausstellen, ersatzlos loeschen
+           statt vage fuellen. -->
+      <dl class="fakten">
+        <div class="faktum"><dt>Kategorie</dt><dd>B</dd></div>
+        <div class="faktum"><dt>Getriebe</dt><dd><span class="offen">folgt</span></dd></div>
+        <div class="faktum"><dt>Fahrzeug</dt><dd><span class="offen">folgt</span></dd></div>
+        <div class="faktum"><dt>Dauer einer Lektion</dt><dd><span class="offen">folgt</span></dd></div>
+        <div class="faktum"><dt>Treffpunkt</dt><dd><span class="offen">folgt</span></dd></div>
+        <div class="faktum"><dt>Gebiet</dt><dd><span class="offen">folgt</span></dd></div>
+        <div class="faktum"><dt>Fahrzeiten</dt><dd><span class="offen">folgt</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <hr class="strich">
+
+  <!-- ============ VKU ============ -->
+  <section id="vku">
+    <div class="bahn">
+      <div class="kopfzeile">
+        <h2>Verkehrskunde.</h2>
+        <!-- Formulierung zu den gesetzlichen Vorgaben bewusst unveraendert
+             uebernommen. Wird vor der Veroeffentlichung separat geprueft. -->
+        <p class="mass still">Die acht obligatorischen Lektionen, die du vor der praktischen Prüfung gemacht haben musst. Ich habe die Berechtigung dafür und gebe den Kurs selbst.</p>
+      </div>
+
+      <!-- TODO Rahel: Ort, naechste Termine und Anmeldeweg fehlen. Ausserdem
+           bestaetigen lassen, ob sie den Kurs wirklich selbst durchfuehrt
+           oder in einem Verbund. Falls Verbund, den Satz oben anpassen. -->
+      <dl class="fakten">
+        <div class="faktum"><dt>Umfang</dt><dd>Acht Lektionen in vier Teilen</dd></div>
+        <div class="faktum"><dt>Ort</dt><dd><span class="offen">folgt</span></dd></div>
+        <div class="faktum"><dt>Nächste Termine</dt><dd><span class="offen">folgt</span></dd></div>
+        <div class="faktum"><dt>Anmeldung</dt><dd><span class="offen">folgt</span></dd></div>
+      </dl>
     </div>
   </section>
 
@@ -453,16 +507,20 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
     <div class="bahn">
       <div class="kopfzeile">
         <h2>Der Weg zum<br>Führerausweis.</h2>
-        <p class="mass still">Vier Etappen. Zwei davon gehst du mit ihr.</p>
+        <p class="mass still">Zur Orientierung, wo die Fahrstunden und der VKU im Ganzen liegen. Zwei der fünf Etappen gehst du mit mir, die anderen erledigst du woanders.</p>
       </div>
 
+      <!-- Beschreibung der gesetzlichen Etappen bewusst unveraendert
+           uebernommen. Wird vor der Veroeffentlichung separat geprueft.
+           Die Etappen bleiben kurz: Details zu Fahrstunden und VKU stehen
+           weiter oben in den eigenen Abschnitten. -->
       <div class="weg">
         <article class="etappe">
           <div>
             <h3>Nothelferkurs und Sehtest</h3>
             <span class="wer"><i class="punkt"></i>Woanders</span>
           </div>
-          <p>Beides brauchst du, bevor du den Lernfahrausweis überhaupt beantragen kannst. Der Nothelferkurs gilt sechs Jahre.</p>
+          <p>Brauchst du, bevor du den Lernfahrausweis beantragen kannst.</p>
         </article>
 
         <article class="etappe">
@@ -470,27 +528,33 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
             <h3>Theorieprüfung</h3>
             <span class="wer"><i class="punkt"></i>Strassenverkehrsamt</span>
           </div>
-          <p>Antrag bei der Gemeinde, Prüfung beim Strassenverkehrsamt Baselland. Bestanden bekommst du den Lernfahrausweis, und ab da darfst du üben.</p>
+          <p>Antrag bei der Gemeinde, Prüfung beim Strassenverkehrsamt Baselland. Danach bekommst du den Lernfahrausweis.</p>
         </article>
 
         <article class="etappe">
           <div>
             <h3>Verkehrskunde&nbsp;VKU</h3>
-            <span class="wer bei-ihr"><i class="punkt"></i>Bei Rahel</span>
+            <span class="wer bei-ihr"><i class="punkt"></i>Bei mir</span>
           </div>
-          <p>Acht Lektionen in vier Teilen. Muss erledigt sein, bevor du dich für die praktische Prüfung anmelden kannst.</p>
+          <p>Muss erledigt sein, bevor du dich zur praktischen Prüfung anmelden kannst.</p>
         </article>
 
         <article class="etappe">
           <div>
             <h3>Fahrstunden und Prüfung</h3>
-            <span class="wer bei-ihr"><i class="punkt"></i>Bei Rahel</span>
+            <span class="wer bei-ihr"><i class="punkt"></i>Bei mir</span>
           </div>
-          <p>Ihr fahrt, bis es sitzt. Sie sagt dir ehrlich, wann du so weit bist, und meldet dich dann zur Prüfung an.</p>
+          <p>Wir fahren, bis es sitzt. Danach melde ich dich zur Prüfung an.</p>
+        </article>
+
+        <article class="etappe">
+          <div>
+            <h3>Nach der Prüfung</h3>
+            <span class="wer"><i class="punkt"></i>Woanders</span>
+          </div>
+          <p>Führerausweis auf Probe für drei Jahre, dazu ein Weiterbildungstag.</p>
         </article>
       </div>
-
-      <p class="leise" style="margin-top:1.6rem; max-width:54ch;">Nach bestandener Prüfung bekommst du den Führerausweis auf Probe für drei Jahre. Dazu gehört ein Weiterbildungstag, den Rahel nicht anbietet.</p>
     </div>
   </section>
 
@@ -504,20 +568,66 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
         <p class="mass still">Sie stehen noch nicht fest. Sobald sie es tun, stehen sie hier und nicht auf Anfrage.</p>
       </div>
 
+      <!-- TODO Rahel: Alle Betraege fehlen. Dazu klaeren, welche Zeilen es
+           ueberhaupt gibt. Was nicht existiert, wird geloescht, nicht mit
+           "auf Anfrage" gefuellt. Bei Fahrlektion und Abo gehoert die Dauer
+           bzw. die Anzahl Lektionen in den Titel, sonst ist der Preis nicht
+           vergleichbar. -->
       <dl class="preise">
         <div class="preis">
           <dt>Fahrlektion</dt>
-          <dd><span class="offen">Preis folgt</span></dd>
+          <dd><span class="offen">folgt</span></dd>
         </div>
         <div class="preis">
           <dt>Mehrfachabo</dt>
-          <dd><span class="offen">Preis folgt</span></dd>
+          <dd><span class="offen">folgt</span></dd>
         </div>
         <div class="preis">
           <dt>Verkehrskunde&nbsp;VKU</dt>
-          <dd><span class="offen">Preis folgt</span></dd>
+          <dd><span class="offen">folgt</span></dd>
+        </div>
+        <div class="preis">
+          <dt>Prüfungsfahrt mit ihrem Auto</dt>
+          <dd><span class="offen">folgt</span></dd>
+        </div>
+        <div class="preis">
+          <dt>Administration</dt>
+          <dd><span class="offen">folgt</span></dd>
+        </div>
+        <div class="preis">
+          <dt>Absagen einer Lektion</dt>
+          <dd><span class="offen">folgt</span></dd>
         </div>
       </dl>
+    </div>
+  </section>
+
+  <hr class="strich">
+
+  <!-- ============ Rahel ============ -->
+  <section id="rahel">
+    <div class="bahn">
+      <div class="kopfzeile"><h2>Zu mir.</h2></div>
+
+      <!-- Die vier ausgefuellten Zeilen stammen aus der Fahrlehrerliste des
+           Kantons Basel-Landschaft, Stand 07.08.2026. Nichts davon ist
+           geschaetzt.
+           TODO Rahel: Ausbildung und Berufsjahre fehlen. Wenn sie dazu nichts
+           sagen will, beide Zeilen loeschen statt ungefaehr fuellen. -->
+      <dl class="fakten">
+        <div class="faktum"><dt>Name</dt><dd>Rahel Schaffner</dd></div>
+        <div class="faktum"><dt>Fahrlehrerin</dt><dd>Kategorie B</dd></div>
+        <div class="faktum"><dt>Zusatzberechtigung</dt><dd>Verkehrskundeunterricht</dd></div>
+        <div class="faktum"><dt>Eingetragen</dt><dd>Fahrlehrerliste Kanton BL</dd></div>
+        <div class="faktum"><dt>Ausbildung</dt><dd><span class="offen">folgt</span></dd></div>
+        <div class="faktum"><dt>Fahrlehrerin seit</dt><dd><span class="offen">folgt</span></dd></div>
+      </dl>
+
+      <p class="leise" style="margin-top:1.6rem; max-width:54ch;">Ich unterrichte neben meinem Beruf. Daher die kleine Zahl an Fahrschülern und daher läuft der erste Kontakt am besten schriftlich.</p>
+
+      <!-- TODO: Bewertungen. Es gibt keine belegten, deshalb steht hier
+           nichts. Erst einbauen, wenn echte Rueckmeldungen von Schuelern
+           vorliegen und Rahel der Veroeffentlichung zugestimmt hat. -->
     </div>
   </section>
 
@@ -526,7 +636,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
     <div class="bahn">
       <div class="kopfzeile">
         <h2>Termin anfragen.</h2>
-        <p class="mass still">Sag ihr, wann es dir passt. Sie meldet sich und bestätigt.</p>
+        <p class="mass still">Sag mir, wann es dir passt. Ich melde mich und bestätige.</p>
       </div>
 
       <form class="anfrage" id="anfrage" novalidate>
@@ -549,6 +659,15 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
             <label class="wahl"><input type="radio" name="was" value="Verkehrskunde VKU"><span>Verkehrskunde VKU</span></label>
             <label class="wahl"><input type="radio" name="was" value="Beides"><span>Beides</span></label>
             <label class="wahl"><input type="radio" name="was" value="Weiss noch nicht"><span>Weiss noch nicht</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="feldsatz">
+          <legend>Wo stehst du gerade</legend>
+          <div class="wahlreihe" role="group">
+            <label class="wahl"><input type="radio" name="stand" value="Starte gerade erst" checked><span>Starte gerade erst</span></label>
+            <label class="wahl"><input type="radio" name="stand" value="Hatte schon Fahrstunden"><span>Hatte schon Fahrstunden</span></label>
+            <label class="wahl"><input type="radio" name="stand" value="Bereite mich auf die Prüfung vor"><span>Vor der Prüfung</span></label>
           </div>
         </fieldset>
 
@@ -601,7 +720,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
 
       <div class="kontakt">
         <a class="draht" href="#" data-wa="Hallo Rahel, ich habe eine Frage zur Fahrschule.">
-          <span class="draht-was"><b>WhatsApp</b><small>Der schnellste Weg zu ihr</small></span>
+          <span class="draht-was"><b>WhatsApp</b><small>Der schnellste Weg zu mir</small></span>
           <svg class="pfeil" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
 
@@ -611,12 +730,14 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
         </a>
 
         <a class="draht" href="tel:+41793055570">
-          <span class="draht-was"><b class="zahl">079 305 55 70</b><small>Sie fährt oft, also lieber schreiben</small></span>
+          <span class="draht-was"><b class="zahl">079 305 55 70</b><small>Wenn du lieber sprichst</small></span>
           <svg class="pfeil" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
 
         <div class="draht">
-          <span class="draht-was"><b>Gelterkinden BL</b><small>Fahrstunden im Oberbaselbiet</small></span>
+          <!-- TODO Rahel: Einzugsgebiet bestaetigen. Bis dahin steht hier nur
+               der belegte Ort, nicht die vermutete Region. -->
+          <span class="draht-was"><b>Gelterkinden BL</b><small>Kategorie B und Verkehrskunde</small></span>
         </div>
       </div>
     </div>
@@ -706,6 +827,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
     z.push('Name: ' + (d.get('name') || '').trim());
     z.push('Nummer: ' + (d.get('tel') || '').trim());
     z.push('Thema: ' + d.get('was'));
+    z.push('Stand: ' + d.get('stand'));
     var tage = [datum(d.get('tag1')), datum(d.get('tag2'))].filter(Boolean);
     if (tage.length) z.push('Wunschtage: ' + tage.join(' oder '));
     if (zeiten.length) z.push('Tageszeit: ' + zeiten.join(', '));
@@ -732,7 +854,7 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
       e.preventDefault();
       var leer = fehlt();
       if (leer.length){
-        hinweis.textContent = 'Es fehlt noch: Name, Nummer und ein Wunschtag. Dann kann sie dir antworten.';
+        hinweis.textContent = 'Es fehlt noch: Name, Nummer und ein Wunschtag. Dann kann ich dir antworten.';
         hinweis.style.color = 'var(--blau-hell)';
         leer[0].focus();
         return;
