@@ -125,7 +125,59 @@ p{ margin:0; }
 .kopf nav{ display:flex; align-items:center; gap:1.6rem; }
 .kopf nav a{ color:var(--grau); text-decoration:none; font-size:.9375rem; font-weight:500; transition:color .2s; }
 .kopf nav a:hover{ color:var(--weiss); }
-@media (max-width:720px){ .kopf nav a.weg-klein{ display:none; } }
+
+/* ---------- Menue auf Handybreite ----------
+   Die Seite ist mobil rund 13 Bildschirme hoch und die Preise liegen bei
+   Bildschirm 8. Ohne Sprungmenue ist die meistgesuchte Angabe unerreichbar. */
+.menu-knopf{
+  display:none; width:44px; height:44px; margin-right:-10px;
+  align-items:center; justify-content:center;
+  background:none; border:0; padding:0; cursor:pointer; color:var(--weiss);
+  -webkit-tap-highlight-color:transparent;
+}
+.menu-knopf svg{ width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; }
+.menu-knopf path{ transition:transform .34s var(--ease); transform-origin:50% 50%; }
+.menu-knopf[aria-expanded="true"] .strich-o{ transform:translateY(4px) rotate(45deg); }
+.menu-knopf[aria-expanded="true"] .strich-u{ transform:translateY(-4px) rotate(-45deg); }
+
+.menu{
+  position:fixed; inset:0; z-index:50;
+  background:var(--grund);
+  padding:calc(60px + clamp(1.5rem,6vw,3rem)) var(--rand) calc(env(safe-area-inset-bottom) + 2rem);
+  overflow-y:auto; overscroll-behavior:contain;
+  display:flex; flex-direction:column; gap:2.5rem;
+  opacity:0; transition:opacity .28s var(--ease);
+}
+.menu[hidden]{ display:none; }
+.menu.offen{ opacity:1; }
+.menu nav{ display:flex; flex-direction:column; align-items:flex-start; gap:0; }
+.menu nav a{
+  display:block; width:100%; padding-block:.72rem;
+  font-size:clamp(1.5rem,6.5vw,2rem); font-weight:600; letter-spacing:-.03em;
+  color:var(--weiss); text-decoration:none;
+  opacity:0; transform:translateY(10px);
+}
+.menu.offen nav a{ opacity:1; transform:none; transition:opacity .5s var(--ease), transform .5s var(--ease); }
+.menu.offen nav a:nth-child(1){ transition-delay:.04s; }
+.menu.offen nav a:nth-child(2){ transition-delay:.08s; }
+.menu.offen nav a:nth-child(3){ transition-delay:.12s; }
+.menu.offen nav a:nth-child(4){ transition-delay:.16s; }
+.menu.offen nav a:nth-child(5){ transition-delay:.2s; }
+.menu.offen nav a:nth-child(6){ transition-delay:.24s; }
+.menu.offen nav a:nth-child(7){ transition-delay:.28s; }
+.menu.offen nav a:nth-child(8){ transition-delay:.32s; }
+.menu nav a:active{ color:var(--blau-hell); }
+.menu-aktionen{ margin-top:auto; padding-top:2rem; border-top:1px solid var(--linie); display:grid; gap:.7rem; }
+
+@media (max-width:720px){
+  .kopf nav{ display:none; }
+  .menu-knopf{ display:flex; }
+}
+@media (min-width:721px){ .menu{ display:none !important; } }
+@media (prefers-reduced-motion:reduce){
+  .menu,.menu nav a,.menu-knopf path{ transition:none !important; }
+  .menu nav a{ opacity:1; transform:none; }
+}
 
 /* ---------- Knöpfe ---------- */
 .knopf{
@@ -391,12 +443,40 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
       </span>
     </a>
     <nav aria-label="Seitenbereiche">
-      <a class="weg-klein" href="#fahrstunden">Fahrstunden</a>
-      <a class="weg-klein" href="#preise">Preise</a>
+      <a href="#fahrstunden">Fahrstunden</a>
+      <a href="#preise">Preise</a>
       <a href="#termin">Termin</a>
     </nav>
+
+    <button class="menu-knopf" id="menu-knopf" type="button"
+            aria-expanded="false" aria-controls="menu" aria-label="Menü öffnen">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path class="strich-o" d="M4 8.5h16"/>
+        <path class="strich-u" d="M4 16.5h16"/>
+      </svg>
+    </button>
   </div>
 </header>
+
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Alle Bereiche">
+    <a href="#warum">Warum bei mir</a>
+    <a href="#fahrstunden">Fahrstunden</a>
+    <a href="#vku">Verkehrskunde</a>
+    <a href="#weg">Weg zum Führerausweis</a>
+    <a href="#preise">Preise</a>
+    <a href="#rahel">Zu mir</a>
+    <a href="#termin">Termin anfragen</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <div class="menu-aktionen">
+    <a class="knopf knopf-voll knopf-breit" href="#" data-wa="Hallo Rahel, ich möchte mit Fahrstunden starten.">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.12-.56-1.35-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.19.2-.58.2-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+      Über WhatsApp schreiben
+    </a>
+    <a class="knopf knopf-linie knopf-breit zahl" href="tel:+41793055570">079 305 55 70</a>
+  </div>
+</div>
 
 <main id="oben">
 
@@ -917,6 +997,74 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
   document.querySelectorAll('[data-mail]').forEach(function(a){
     a.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent('Anfrage Fahrschule');
   });
+
+  /* --- Menue auf Handybreite --- */
+  (function(){
+    var knopf = document.getElementById('menu-knopf');
+    var panel = document.getElementById('menu');
+    if (!knopf || !panel) return;
+
+    var zuletztFokussiert = null;
+
+    function fokussierbare(){
+      return panel.querySelectorAll('a[href], button:not([disabled])');
+    }
+
+    function auf(){
+      zuletztFokussiert = document.activeElement;
+      panel.hidden = false;
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(function(){ panel.classList.add('offen'); });
+      knopf.setAttribute('aria-expanded', 'true');
+      knopf.setAttribute('aria-label', 'Menü schliessen');
+      var erstes = fokussierbare()[0];
+      if (erstes) erstes.focus();
+    }
+
+    function zu(fokusZurueck){
+      panel.classList.remove('offen');
+      knopf.setAttribute('aria-expanded', 'false');
+      knopf.setAttribute('aria-label', 'Menü öffnen');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      var fertig = function(){ panel.hidden = true; };
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) fertig();
+      else setTimeout(fertig, 280);
+      if (fokusZurueck !== false && zuletztFokussiert) zuletztFokussiert.focus();
+    }
+
+    knopf.addEventListener('click', function(){
+      if (knopf.getAttribute('aria-expanded') === 'true') zu(); else auf();
+    });
+
+    /* Ein Sprungziel schliesst das Menue, der Fokus bleibt beim Ziel. */
+    panel.querySelectorAll('nav a').forEach(function(a){
+      a.addEventListener('click', function(){ zu(false); });
+    });
+    panel.querySelectorAll('.menu-aktionen a').forEach(function(a){
+      a.addEventListener('click', function(){ zu(false); });
+    });
+
+    document.addEventListener('keydown', function(e){
+      if (panel.hidden) return;
+      if (e.key === 'Escape'){ e.preventDefault(); zu(); return; }
+      if (e.key !== 'Tab') return;
+      var f = fokussierbare();
+      if (!f.length) return;
+      var erst = f[0], letzt = f[f.length - 1];
+      var ziele = [].slice.call(f).concat([knopf]);
+      if (ziele.indexOf(document.activeElement) === -1){ e.preventDefault(); erst.focus(); return; }
+      if (e.shiftKey && document.activeElement === erst){ e.preventDefault(); knopf.focus(); }
+      else if (!e.shiftKey && document.activeElement === knopf){ e.preventDefault(); erst.focus(); }
+      else if (!e.shiftKey && document.activeElement === letzt){ e.preventDefault(); knopf.focus(); }
+    });
+
+    /* Wird das Fenster breit, verschwindet der Knopf: Menue mitschliessen. */
+    matchMedia('(min-width: 721px)').addEventListener('change', function(e){
+      if (e.matches && !panel.hidden) zu(false);
+    });
+  })();
 
   /* --- Terminanfrage: fertige Nachricht bauen --- */
   var form = document.getElementById('anfrage');
