@@ -1022,7 +1022,9 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
       requestAnimationFrame(function(){
         requestAnimationFrame(function(){
           var erstes = fokussierbare()[0];
-          if (erstes && istOffen()) erstes.focus();
+          /* preventScroll, sonst scrollt der Browser den fokussierten Link
+             in den Blick und schiebt den ersten Eintrag unter die Kopfzeile. */
+          if (erstes && istOffen()) erstes.focus({ preventScroll: true });
         });
       });
     }
