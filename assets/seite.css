@@ -1,0 +1,50 @@
+@font-face { font-family:'Switzer'; src:url('fonts/switzer-400.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:'Switzer'; src:url('fonts/switzer-500.woff2') format('woff2'); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { font-family:'Switzer'; src:url('fonts/switzer-600.woff2') format('woff2'); font-weight:600; font-style:normal; font-display:swap; }
+@font-face { font-family:'Kaushan'; src:url('fonts/kaushan-script.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:block; }
+
+:root{
+  --grund:#08090A; --linie:#23272E; --weiss:#F4F6F8;
+  --grau:#9AA1AB; --grau-still:#6E757F;
+  --blau:#0F76D8; --blau-hell:#4FA6FF;
+  --rand:clamp(1.35rem,5vw,3.5rem);
+  color-scheme:dark; accent-color:var(--blau); caret-color:var(--blau-hell);
+}
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; scrollbar-color:#262B32 var(--grund); scrollbar-width:thin; }
+body{
+  margin:0; background:var(--grund); color:var(--weiss);
+  font-family:'Switzer',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:1.0625rem; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+::selection{ background:var(--blau); color:#fff; }
+::-webkit-scrollbar{ width:11px; }
+::-webkit-scrollbar-track{ background:var(--grund); }
+::-webkit-scrollbar-thumb{ background:#262B32; border-radius:99px; border:3px solid var(--grund); }
+:focus-visible{ outline:2px solid var(--blau-hell); outline-offset:3px; border-radius:4px; }
+
+.bahn{ width:100%; max-width:44rem; margin-inline:auto; padding:clamp(2.5rem,7vw,4.5rem) var(--rand) clamp(4rem,9vw,6rem); }
+
+.zurueck{
+  display:inline-flex; align-items:center; gap:.5em;
+  color:var(--grau); text-decoration:none; font-size:.9375rem; font-weight:500;
+  margin-bottom:clamp(2.5rem,6vw,3.5rem);
+}
+.zurueck:hover{ color:var(--weiss); }
+.zurueck svg{ width:1em; height:1em; }
+
+h1{ font-size:clamp(2rem,5.5vw,2.9rem); font-weight:600; letter-spacing:-.032em; line-height:1.08; margin:0 0 2.25rem; }
+h2{ font-size:1.125rem; font-weight:600; letter-spacing:-.015em; margin:2.75rem 0 .65rem; }
+p{ margin:0 0 1.1rem; color:var(--grau); }
+p.stark{ color:var(--weiss); }
+a{ color:var(--blau-hell); text-underline-offset:.22em; text-decoration-thickness:1px; }
+ul{ margin:0 0 1.1rem; padding-left:1.15rem; color:var(--grau); }
+li{ margin-bottom:.4rem; }
+.zahl{ font-variant-numeric:tabular-nums; }
+
+.offen{
+  display:block; margin:1.1rem 0; padding:1rem 1.15rem;
+  border:1px dashed #333941; border-radius:10px;
+  color:var(--grau-still); font-size:.9375rem; line-height:1.55;
+}
+.fuss{ margin-top:3.5rem; padding-top:1.75rem; border-top:1px solid var(--linie); color:var(--grau-still); font-size:.875rem; }

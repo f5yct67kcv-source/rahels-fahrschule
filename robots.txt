@@ -1,0 +1,11 @@
+# Entwurfsphase. Rahel hat der Seite noch nicht zugestimmt,
+# deshalb darf sie nicht in Suchmaschinen erscheinen.
+# Beim Livegang durch die Freigabe unten ersetzen.
+
+User-agent: *
+Disallow: /
+
+# Nach Rahels Zusage stattdessen:
+# User-agent: *
+# Allow: /
+# Sitemap: https://DOMAIN/sitemap.xml

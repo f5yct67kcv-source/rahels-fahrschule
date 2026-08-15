@@ -1,0 +1,15 @@
+# Interne Projektunterlagen. Bleiben im Vault, nicht ins Repo.
+PRODUCT.md
+Fragen an die Schwester.md
+.impeccable/
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editoren
+.vscode/
+.idea/
+*.swp
