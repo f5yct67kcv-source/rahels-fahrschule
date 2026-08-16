@@ -333,18 +333,18 @@ dl{ margin:0; }
    nebeneinander, so eng wie eine Beschriftung. Ein noch unbekannter Wert
    bekommt eine gestrichelte Grundlinie, wie ein Feld, das ausgefuellt
    werden will. */
-.plaketten{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.5rem; }
+.plaketten{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.4rem; }
 .plakette{
-  display:inline-flex; align-items:baseline; gap:.65rem;
+  display:inline-flex; align-items:baseline; gap:.55rem;
   border:1px solid var(--linie); border-radius:6px;
-  padding:.6rem .85rem;
+  padding:.42rem .7rem; line-height:1.25;
 }
 .pl-label{
   font-size:.75rem; font-weight:600; letter-spacing:.14em;
   text-transform:uppercase; color:var(--grau-still); white-space:nowrap;
 }
 .pl-wert{
-  font-size:1.0625rem; font-weight:600; color:var(--weiss);
+  font-size:1rem; font-weight:600; color:var(--weiss);
   font-variant-numeric:tabular-nums; white-space:nowrap;
 }
 .pl-wert.leer{
@@ -354,7 +354,7 @@ dl{ margin:0; }
 
 /* ---------- Klappen ---------- */
 .klappen-kopf{
-  margin:clamp(2rem,4vw,2.6rem) 0 .9rem;
+  margin:clamp(1.4rem,3vw,1.8rem) 0 .7rem;
   font-size:.75rem; font-weight:600; letter-spacing:.14em;
   text-transform:uppercase; color:var(--grau-still);
 }
@@ -362,8 +362,8 @@ dl{ margin:0; }
 .klappe{ border-bottom:1px solid var(--linie); }
 .klappe summary{
   display:flex; align-items:center; justify-content:space-between; gap:1.25rem;
-  padding-block:1rem; cursor:pointer; list-style:none;
-  font-size:1.0625rem; font-weight:500; letter-spacing:-.012em;
+  padding-block:.72rem; cursor:pointer; list-style:none;
+  font-size:1.0625rem; line-height:1.35; font-weight:500; letter-spacing:-.012em;
   color:var(--weiss);
 }
 .klappe summary::-webkit-details-marker{ display:none; }
@@ -376,7 +376,7 @@ dl{ margin:0; }
 }
 .klappe[open] summary::after{ transform:rotate(90deg); background-size:100% 1.5px, 0 0; }
 .klappe summary:hover{ color:var(--blau-hell); }
-.klappe-inhalt{ padding:0 0 1.1rem; color:var(--grau); max-width:54ch; }
+.klappe-inhalt{ padding:0 0 .95rem; color:var(--grau); max-width:54ch; }
 @media (prefers-reduced-motion:reduce){ .klappe summary::after{ transition:none; } }
 
 /* ---------- Anfrage ---------- */
