@@ -79,15 +79,24 @@ a{ color:var(--blau-hell); text-underline-offset:.22em; text-decoration-thicknes
 /* ---------- Raster ---------- */
 .bahn{ width:100%; max-width:var(--mass); margin-inline:auto; padding-inline:var(--rand); }
 section{ padding-block:var(--luft); }
-/* Abschnittstrenner als gestrichelte Mittellinie. Gestrichelt heisst hier
-   Uebergang, durchgezogen heisst Fuehrung: die senkrechte Schiene der
-   Strecke bleibt deshalb bewusst durchgezogen. Sonst konkurrieren zwei
-   Fahrbahnmarkierungen miteinander. */
+/* Leitlinie in Fahrtrichtung.
+   Vorher lief der Trenner quer ueber die Seite. Quer zur Fahrtrichtung ist
+   eine Strassenlinie eine Haltelinie oder ein Fussgaengerstreifen, nie eine
+   Leitlinie, deshalb las das Auge sie als blossen Trennstrich. Jetzt laeuft
+   sie senkrecht, also in derselben Richtung, in der man die Seite liest.
+   Verhaeltnis Strich zu Luecke eins zu zwei, wie bei der Teilung 3/6.
+   Breit und hell genug, um Markierung zu sein: auf Asphalt sind die
+   Markierungen das Hellste im Bild, nicht das Blasseste.
+   Der negative Aussenabstand hebt die eigene Hoehe wieder auf, damit die
+   Linie im vorhandenen Abschnittsabstand sitzt und die Seite nicht laenger
+   wird. Gestrichelt heisst Uebergang, durchgezogen heisst Fuehrung: die
+   Schiene der zehn Etappen bleibt deshalb durchgezogen. */
 .strich{
-  border:0; margin:0; height:2px;
-  background-image:repeating-linear-gradient(to right,
-    var(--markierung) 0 26px, transparent 26px 50px);
-  opacity:.42;
+  border:0; width:6px; height:84px;
+  margin-inline:auto; margin-block:-42px;
+  background-image:repeating-linear-gradient(to bottom,
+    var(--markierung) 0 18px, transparent 18px 54px);
+  opacity:.8;
 }
 
 /* ---------- Typografie ---------- */
