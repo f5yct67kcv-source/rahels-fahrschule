@@ -4,14 +4,14 @@
 @font-face { font-family:'Kaushan'; src:url('fonts/kaushan-script.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:block; }
 
 :root{
-  --grund:#08090A; --linie:#23272E; --weiss:#F4F6F8;
-  --grau:#9AA1AB; --grau-still:#8B929C;
+  --grund:#171614; --linie:#33312C; --weiss:#F1EDE5;
+  --grau:#A8A296; --grau-still:#8C877C;
   --blau:#0F76D8; --blau-hell:#4FA6FF;
   --rand:clamp(1.35rem,5vw,3.5rem);
   color-scheme:dark; accent-color:var(--blau); caret-color:var(--blau-hell);
 }
 *,*::before,*::after{ box-sizing:border-box; }
-html{ -webkit-text-size-adjust:100%; scrollbar-color:#262B32 var(--grund); scrollbar-width:thin; }
+html{ -webkit-text-size-adjust:100%; scrollbar-color:#3B3831 var(--grund); scrollbar-width:thin; }
 body{
   margin:0; background:var(--grund); color:var(--weiss);
   font-family:'Switzer',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
@@ -20,8 +20,8 @@ body{
 ::selection{ background:var(--blau); color:#fff; }
 ::-webkit-scrollbar{ width:11px; }
 ::-webkit-scrollbar-track{ background:var(--grund); }
-::-webkit-scrollbar-thumb{ background:#262B32; border-radius:99px; border:3px solid var(--grund); }
-:focus-visible{ outline:2px solid var(--blau-hell); outline-offset:3px; border-radius:4px; }
+::-webkit-scrollbar-thumb{ background:#3B3831; border-radius:2px; border:3px solid var(--grund); }
+:focus-visible{ outline:2px solid var(--blau-hell); outline-offset:3px; border-radius:3px; }
 
 .bahn{ width:100%; max-width:44rem; margin-inline:auto; padding:clamp(2.5rem,7vw,4.5rem) var(--rand) clamp(4rem,9vw,6rem); }
 
@@ -44,7 +44,7 @@ li{ margin-bottom:.4rem; }
 
 .offen{
   display:block; margin:1.1rem 0; padding:1rem 1.15rem;
-  border:1px dashed #333941; border-radius:10px;
+  border:1px dashed #45423B; border-radius:6px;
   color:var(--grau-still); font-size:.9375rem; line-height:1.55;
 }
 .fuss{ margin-top:3.5rem; padding-top:1.75rem; border-top:1px solid var(--linie); color:var(--grau-still); font-size:.875rem; }

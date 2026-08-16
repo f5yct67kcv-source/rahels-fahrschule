@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rahels Fahrschule – Fahrstunden und Verkehrskunde in Gelterkinden</title>
 <meta name="description" content="Fahrschule in Gelterkinden BL. Fahrstunden Kategorie B und Verkehrskundeunterricht bei Rahel Schaffner. Terminanfrage über WhatsApp.">
-<meta name="theme-color" content="#08090A">
+<meta name="theme-color" content="#171614">
 <!-- ENTWURFSPHASE: Rahel weiss noch nichts von der Seite. Solange sie nicht
      zugestimmt hat, darf ihr Name nicht in der Google-Suche auftauchen.
      Diese Zeile und robots.txt beim Livegang entfernen. -->
@@ -21,23 +21,31 @@
 @font-face { font-family:'Switzer'; src:url('assets/fonts/switzer-700.woff2') format('woff2'); font-weight:700; font-style:normal; font-display:swap; }
 @font-face { font-family:'Kaushan'; src:url('assets/fonts/kaushan-script.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:block; }
 
-/* ---------- Marke ---------- */
+/* ---------- Marke ----------
+   Register: moderne Schweizer Fahrschule. Funktional, direkt, etwas roh,
+   grafische Anleihen an Strassenmarkierung und Verkehrsfuehrung.
+   Ausdruecklich nicht Premium-Tech.
+   Grund ist ein gebrochenes, leicht warmes Anthrazit, kein Asphaltschwarz
+   mit Koernung: sonst kippt es Richtung Werkstatt und Tuning. Helle Toene
+   sind warm gebrochen, nie reines Weiss. Das Blau bleibt exakt das L-Blau
+   der Klebefolie und ist die einzige Signalfarbe. */
 :root{
-  --grund:#08090A;
-  --flaeche:#101216;
-  --flaeche-2:#15181D;
-  --linie:#23272E;
-  --weiss:#F4F6F8;
-  --grau:#9AA1AB;
-  --grau-still:#8B929C;
+  --grund:#171614;
+  --flaeche:#1F1E1B;
+  --flaeche-2:#262420;
+  --linie:#33312C;
+  --weiss:#F1EDE5;
+  --grau:#A8A296;
+  --grau-still:#8C877C;
+  --markierung:#C9C2B4;
   --blau:#0F76D8;
   --blau-hell:#4FA6FF;
   --blau-tief:#0B5DAC;
 
   --mass:1180px;
-  --luft:clamp(5.5rem, 13vw, 11rem);
+  --luft:clamp(4rem, 9.5vw, 8rem);
   --rand:clamp(1.35rem, 5vw, 3.5rem);
-  --kurve:14px;
+  --kurve:10px;
   --ease:cubic-bezier(.16,1,.3,1);
 }
 
@@ -62,16 +70,25 @@ body{
 :root{ accent-color:var(--blau); caret-color:var(--blau-hell); color-scheme:dark; }
 ::-webkit-scrollbar{ width:11px; height:11px; }
 ::-webkit-scrollbar-track{ background:var(--grund); }
-::-webkit-scrollbar-thumb{ background:#262B32; border-radius:99px; border:3px solid var(--grund); }
-::-webkit-scrollbar-thumb:hover{ background:#333A43; }
-html{ scrollbar-color:#262B32 var(--grund); scrollbar-width:thin; }
-:focus-visible{ outline:2px solid var(--blau-hell); outline-offset:3px; border-radius:4px; }
+::-webkit-scrollbar-thumb{ background:#3B3831; border-radius:2px; border:3px solid var(--grund); }
+::-webkit-scrollbar-thumb:hover{ background:#4C483F; }
+html{ scrollbar-color:#3B3831 var(--grund); scrollbar-width:thin; }
+:focus-visible{ outline:2px solid var(--blau-hell); outline-offset:3px; border-radius:3px; }
 a{ color:var(--blau-hell); text-underline-offset:.22em; text-decoration-thickness:1px; }
 
 /* ---------- Raster ---------- */
 .bahn{ width:100%; max-width:var(--mass); margin-inline:auto; padding-inline:var(--rand); }
 section{ padding-block:var(--luft); }
-.strich{ border:0; border-top:1px solid var(--linie); margin:0; }
+/* Abschnittstrenner als gestrichelte Mittellinie. Gestrichelt heisst hier
+   Uebergang, durchgezogen heisst Fuehrung: die senkrechte Schiene der
+   Strecke bleibt deshalb bewusst durchgezogen. Sonst konkurrieren zwei
+   Fahrbahnmarkierungen miteinander. */
+.strich{
+  border:0; margin:0; height:2px;
+  background-image:repeating-linear-gradient(to right,
+    var(--markierung) 0 26px, transparent 26px 50px);
+  opacity:.42;
+}
 
 /* ---------- Typografie ---------- */
 h1,h2,h3{ margin:0; font-weight:600; letter-spacing:-.035em; line-height:1.04; }
@@ -187,8 +204,8 @@ p{ margin:0; }
 /* ---------- Knöpfe ---------- */
 .knopf{
   display:inline-flex; align-items:center; justify-content:center; gap:.55em;
-  min-height:56px; padding:0 1.6rem;
-  border-radius:99px; border:1px solid transparent;
+  min-height:52px; padding:0 1.45rem;
+  border-radius:9px; border:1px solid transparent;
   font:inherit; font-weight:600; font-size:1.0625rem; letter-spacing:-.012em;
   text-decoration:none; cursor:pointer; white-space:nowrap;
   transition:background .22s var(--ease), border-color .22s var(--ease), color .22s var(--ease), transform .22s var(--ease);
@@ -196,24 +213,24 @@ p{ margin:0; }
 .knopf:active{ transform:scale(.985); }
 .knopf-voll{ background:var(--blau); color:#fff; }
 .knopf-voll:hover{ background:#1785EE; }
-.knopf-linie{ border-color:#3A4048; color:var(--weiss); background:transparent; }
-.knopf-linie:hover{ border-color:#535A64; background:#0F1216; }
+.knopf-linie{ border-color:#4A473F; color:var(--weiss); background:transparent; }
+.knopf-linie:hover{ border-color:#66625A; background:#1D1C19; }
 .knopf-breit{ width:100%; }
 .knopf svg{ width:1.15em; height:1.15em; flex:none; }
 .knopfreihe{ display:flex; flex-wrap:wrap; gap:.75rem; }
 @media (max-width:520px){ .knopfreihe{ flex-direction:column; } .knopfreihe .knopf{ width:100%; } }
 
 /* ---------- Hero ---------- */
-.hero{ padding-block:clamp(3.5rem,9vw,6rem) 0; text-align:center; }
-.hero .lockup{ margin-bottom:clamp(2.6rem,7vw,4.2rem); }
+.hero{ padding-block:clamp(2.75rem,7vw,4.5rem) 0; text-align:center; }
+.hero .lockup{ margin-bottom:clamp(2rem,5.5vw,3.2rem); }
 .hero h1{ margin-bottom:1.15rem; }
-.hero .gross{ margin-inline:auto; margin-bottom:clamp(2rem,5vw,2.75rem); }
+.hero .gross{ margin-inline:auto; margin-bottom:clamp(1.6rem,4vw,2.1rem); }
 .hero .knopfreihe{ justify-content:center; }
-.hero-bild{ margin-top:clamp(3.5rem,8vw,5.5rem); }
+.hero-bild{ margin-top:clamp(2.6rem,6vw,4rem); }
 
 /* ---------- Bildflächen ---------- */
 .bild{
-  position:relative; margin-top:clamp(3.5rem,8vw,5.5rem);
+  position:relative; margin-top:clamp(2.6rem,6vw,4rem);
   background:var(--flaeche); border-radius:var(--kurve);
   overflow:hidden; display:grid; place-items:center;
 }
@@ -230,7 +247,7 @@ p{ margin:0; }
 .bild img{ width:100%; height:100%; object-fit:cover; display:block; }
 
 /* ---------- Abschnittskopf ---------- */
-.kopfzeile{ display:grid; gap:1.35rem; margin-bottom:clamp(2.8rem,6vw,4rem); }
+.kopfzeile{ display:grid; gap:1.15rem; margin-bottom:clamp(2.1rem,4.5vw,3rem); }
 .kopfzeile p{ max-width:52ch; }
 
 /* ---------- Angebot ---------- */
@@ -238,7 +255,7 @@ p{ margin:0; }
 .posten{
   display:grid; gap:.7rem;
   grid-template-columns:1fr; align-items:start;
-  padding-block:clamp(2rem,4.5vw,2.9rem);
+  padding-block:clamp(1.6rem,3.4vw,2.2rem);
   border-bottom:1px solid var(--linie);
 }
 @media (min-width:820px){
@@ -254,7 +271,7 @@ p{ margin:0; }
   position:relative; display:grid;
   grid-template-columns:var(--marke) minmax(0,1fr);
   gap:clamp(1.1rem,3.5vw,1.9rem);
-  padding-bottom:clamp(2.4rem,5.5vw,3.4rem);
+  padding-bottom:clamp(1.9rem,4.2vw,2.6rem);
 }
 .halt:last-child{ padding-bottom:0; }
 /* Die Schiene laeuft von Marke zu Marke und endet an der letzten. */
@@ -294,7 +311,7 @@ p{ margin:0; }
 .preis,.faktum{
   display:flex; align-items:baseline; justify-content:space-between;
   gap:clamp(1rem,4vw,2rem); flex-wrap:wrap;
-  padding-block:clamp(1.35rem,3vw,1.8rem);
+  padding-block:clamp(1.1rem,2.3vw,1.4rem);
   border-bottom:1px solid var(--linie);
 }
 /* Lange Werte brechen um, statt aus der Zeile zu laufen. */
@@ -305,14 +322,14 @@ p{ margin:0; }
 .faktum dd{ color:var(--weiss); font-weight:500; }
 .offen{
   display:inline-flex; align-items:center; gap:.6em;
-  padding:.3em .8em; border-radius:99px;
-  border:1px dashed #333941; color:var(--grau-still);
+  padding:.32em .75em; border-radius:5px;
+  border:1px dashed #45423B; color:var(--grau-still);
   font-size:.8125rem; font-weight:500; letter-spacing:.02em; white-space:nowrap;
 }
 dl{ margin:0; }
 
 /* ---------- Anfrage ---------- */
-.anfrage{ background:var(--flaeche); border-radius:var(--kurve); padding:clamp(1.6rem,5vw,3.25rem); }
+.anfrage{ background:var(--flaeche); border-radius:var(--kurve); padding:clamp(1.4rem,4vw,2.5rem); }
 .feldsatz{ border:0; margin:0; padding:0; display:grid; gap:.7rem; }
 .feldsatz + .feldsatz{ margin-top:1.75rem; }
 legend, .feldname{
@@ -325,15 +342,15 @@ legend, .feldname{
 label.feld{ display:grid; gap:.4rem; }
 label.feld > span{ font-size:.9375rem; font-weight:500; color:var(--grau); }
 input[type=text],input[type=tel],input[type=email],input[type=date],select,textarea{
-  width:100%; min-height:52px; padding:.8rem 1rem;
+  width:100%; min-height:50px; padding:.75rem .95rem;
   background:var(--grund); color:var(--weiss);
-  border:1px solid var(--linie); border-radius:10px;
+  border:1px solid var(--linie); border-radius:8px;
   font:inherit; font-size:1rem;
   transition:border-color .2s var(--ease), background .2s var(--ease);
 }
 textarea{ min-height:112px; resize:vertical; line-height:1.55; }
-input:hover,select:hover,textarea:hover{ border-color:#30353D; }
-input:focus,select:focus,textarea:focus{ outline:none; border-color:var(--blau); background:#0B0D10; }
+input:hover,select:hover,textarea:hover{ border-color:#45423B; }
+input:focus,select:focus,textarea:focus{ outline:none; border-color:var(--blau); background:#141311; }
 input::placeholder,textarea::placeholder{ color:var(--grau-still); opacity:1; }
 input[type=date]{ -webkit-appearance:none; appearance:none; }
 input[type=date]::-webkit-calendar-picker-indicator{ filter:invert(1) opacity(.75); cursor:pointer; padding:.25rem; }
@@ -348,7 +365,7 @@ select{
 .wahl{ position:relative; }
 .wahl input{ position:absolute; inset:0; opacity:0; cursor:pointer; }
 .wahl span{
-  display:block; padding:.62rem 1.05rem; border-radius:99px;
+  display:block; padding:.58rem 1rem; border-radius:7px;
   border:1px solid var(--linie); color:var(--grau);
   font-size:.9375rem; font-weight:500; cursor:pointer;
   transition:border-color .2s var(--ease), color .2s var(--ease), background .2s var(--ease);
@@ -365,7 +382,7 @@ select{
 .kontakt{ display:grid; gap:0; border-top:1px solid var(--linie); }
 .draht{
   display:flex; align-items:center; justify-content:space-between; gap:1.5rem;
-  padding-block:clamp(1.35rem,3vw,1.75rem);
+  padding-block:clamp(1.1rem,2.3vw,1.35rem);
   border-bottom:1px solid var(--linie);
   color:inherit; text-decoration:none;
   transition:padding-inline-start .25s var(--ease);
@@ -378,7 +395,7 @@ a.draht:hover{ padding-inline-start:.6rem; }
 a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
 
 /* ---------- Fuss ---------- */
-.fuss{ padding-block:clamp(3rem,6vw,4.5rem) clamp(2rem,4vw,3rem); border-top:1px solid var(--linie); }
+.fuss{ padding-block:clamp(2.3rem,4.5vw,3.4rem) clamp(1.6rem,3vw,2.3rem); border-top:1px solid var(--linie); }
 .fuss .bahn{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:2rem; }
 .fuss-links{ display:flex; flex-wrap:wrap; gap:1.4rem; }
 .fuss-links a{ color:var(--grau-still); text-decoration:none; font-size:.9375rem; }
@@ -416,8 +433,11 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
   THESIS: Ein schwarzes Feld, in dem nur ihr eigenes Zeichen, ein Satz und eine
     Handlung stehen. Verweigert die Kategorie-Anordnung aus Stockfoto, drei
     Kaertchen und gruenem WhatsApp-Knopf.
-  OWN-WORLD: Grund #08090A, Switzer eng gesetzt, das L-Blau ihrer Klebefolie als
-    einzige Farbe, Haarlinien statt Rahmen, keine Kaertchen, keine Icon-Reihen.
+  OWN-WORLD: Warmes Anthrazit #171614, warm gebrochenes Off-White, das L-Blau
+    ihrer Klebefolie als einzige Signalfarbe. Kanten statt Pillen (9-10px),
+    gestrichelte Mittellinie als Abschnittstrenner, durchgezogene Schiene als
+    Fuehrung. Switzer eng gesetzt. Keine Kaertchen, keine Icon-Reihen.
+    Register: moderne Schweizer Fahrschule, nicht Premium-Tech (2026-08-16).
   STORY: Er versteht in zwei Sekunden, wer sie ist und wo. Er glaubt, dass hier
     eine Person unterrichtet, keine Firma. Er schreibt ihr, statt anzurufen.
   FIRST VIEWPORT: Lockup zentriert im schwarzen Feld, darunter die Zeile in
