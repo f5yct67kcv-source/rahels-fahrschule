@@ -372,12 +372,15 @@ dl{ margin:0; }
   background:
     linear-gradient(var(--grau) 0 0) center/100% 1.5px no-repeat,
     linear-gradient(var(--grau) 0 0) center/1.5px 100% no-repeat;
-  transition:transform .25s var(--ease);
+  transition:background-size .25s var(--ease);
 }
-.klappe[open] summary::after{ transform:rotate(90deg); background-size:100% 1.5px, 0 0; }
+/* Offen wird aus dem Plus ein Minus: der senkrechte Balken faehrt auf
+   null. Bewusst ohne Drehung, sonst steht dort ein senkrechter Strich. */
+.klappe[open] summary::after{ background-size:100% 1.5px, 0 100%; }
 .klappe summary:hover{ color:var(--blau-hell); }
 .klappe-inhalt{ padding:0 0 .95rem; color:var(--grau); max-width:54ch; }
 @media (prefers-reduced-motion:reduce){ .klappe summary::after{ transition:none; } }
+@media (max-width:400px){ .klappe summary{ font-size:1rem; } }
 
 /* ---------- Anfrage ---------- */
 .anfrage{ background:var(--flaeche); border-radius:var(--kurve); padding:clamp(1.4rem,4vw,2.5rem); }
