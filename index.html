@@ -328,6 +328,57 @@ p{ margin:0; }
 }
 dl{ margin:0; }
 
+/* ---------- Plaketten: die Kernwerte ----------
+   Fuer "Getriebe: Automat" braucht es keine Tabellenzeile. Label und Wert
+   nebeneinander, so eng wie eine Beschriftung. Ein noch unbekannter Wert
+   bekommt eine gestrichelte Grundlinie, wie ein Feld, das ausgefuellt
+   werden will. */
+.plaketten{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.5rem; }
+.plakette{
+  display:inline-flex; align-items:baseline; gap:.65rem;
+  border:1px solid var(--linie); border-radius:6px;
+  padding:.6rem .85rem;
+}
+.pl-label{
+  font-size:.75rem; font-weight:600; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--grau-still); white-space:nowrap;
+}
+.pl-wert{
+  font-size:1.0625rem; font-weight:600; color:var(--weiss);
+  font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+.pl-wert.leer{
+  color:var(--grau-still); font-weight:500;
+  border-bottom:1px dashed #45423B; padding-bottom:1px;
+}
+
+/* ---------- Klappen ---------- */
+.klappen-kopf{
+  margin:clamp(2rem,4vw,2.6rem) 0 .9rem;
+  font-size:.75rem; font-weight:600; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--grau-still);
+}
+.klappen{ border-top:1px solid var(--linie); }
+.klappe{ border-bottom:1px solid var(--linie); }
+.klappe summary{
+  display:flex; align-items:center; justify-content:space-between; gap:1.25rem;
+  padding-block:1rem; cursor:pointer; list-style:none;
+  font-size:1.0625rem; font-weight:500; letter-spacing:-.012em;
+  color:var(--weiss);
+}
+.klappe summary::-webkit-details-marker{ display:none; }
+.klappe summary::after{
+  content:''; flex:none; width:13px; height:13px;
+  background:
+    linear-gradient(var(--grau) 0 0) center/100% 1.5px no-repeat,
+    linear-gradient(var(--grau) 0 0) center/1.5px 100% no-repeat;
+  transition:transform .25s var(--ease);
+}
+.klappe[open] summary::after{ transform:rotate(90deg); background-size:100% 1.5px, 0 0; }
+.klappe summary:hover{ color:var(--blau-hell); }
+.klappe-inhalt{ padding:0 0 1.1rem; color:var(--grau); max-width:54ch; }
+@media (prefers-reduced-motion:reduce){ .klappe summary::after{ transition:none; } }
+
 /* ---------- Anfrage ---------- */
 .anfrage{ background:var(--flaeche); border-radius:var(--kurve); padding:clamp(1.4rem,4vw,2.5rem); }
 .feldsatz{ border:0; margin:0; padding:0; display:grid; gap:.7rem; }
@@ -604,18 +655,43 @@ a.draht:hover .pfeil{ transform:translateX(4px); color:var(--blau-hell); }
         <p class="mass still">Kategorie B, vom ersten Mal hinter dem Steuer bis zur praktischen Prüfung. So viele Lektionen, wie du brauchst.</p>
       </div>
 
-      <!-- TODO Rahel: Jede Zeile mit "folgt" braucht eine echte Angabe.
-           Zeilen, die sich als irrelevant herausstellen, ersatzlos loeschen
-           statt vage fuellen. -->
-      <dl class="fakten">
-        <div class="faktum"><dt>Kategorie</dt><dd>B</dd></div>
-        <div class="faktum"><dt>Getriebe</dt><dd><span class="offen">folgt</span></dd></div>
-        <div class="faktum"><dt>Fahrzeug</dt><dd><span class="offen">folgt</span></dd></div>
-        <div class="faktum"><dt>Dauer einer Lektion</dt><dd><span class="offen">folgt</span></dd></div>
-        <div class="faktum"><dt>Treffpunkt</dt><dd><span class="offen">folgt</span></dd></div>
-        <div class="faktum"><dt>Gebiet</dt><dd><span class="offen">folgt</span></dd></div>
-        <div class="faktum"><dt>Fahrzeiten</dt><dd><span class="offen">folgt</span></dd></div>
-      </dl>
+      <!-- Drei Kernwerte offen, der organisatorische Rest eingeklappt.
+           TODO Rahel: Getriebe (Automat, Handschaltung oder beides) und die
+           Dauer einer Lektion in Minuten. Sobald bekannt, class="leer" beim
+           Wert entfernen und den Text ersetzen. -->
+      <ul class="plaketten">
+        <li class="plakette"><span class="pl-label">Kategorie</span><span class="pl-wert">B</span></li>
+        <li class="plakette"><span class="pl-label">Getriebe</span><span class="pl-wert leer">folgt</span></li>
+        <li class="plakette"><span class="pl-label">Lektion</span><span class="pl-wert leer">folgt</span></li>
+      </ul>
+
+      <h3 class="klappen-kopf">Rund um die Fahrstunden</h3>
+
+      <!-- TODO Rahel: Alle fuenf Antworten fehlen. Fragen bleiben stehen,
+           die Antwort ersetzt jeweils die folgt-Zeile. Was sich als
+           irrelevant herausstellt, ersatzlos loeschen. -->
+      <div class="klappen">
+        <details class="klappe">
+          <summary>Wo starten die Fahrstunden?</summary>
+          <div class="klappe-inhalt"><span class="offen">folgt</span></div>
+        </details>
+        <details class="klappe">
+          <summary>Wo bin ich unterwegs?</summary>
+          <div class="klappe-inhalt"><span class="offen">folgt</span></div>
+        </details>
+        <details class="klappe">
+          <summary>Wann kann ich Fahrstunden nehmen?</summary>
+          <div class="klappe-inhalt"><span class="offen">folgt</span></div>
+        </details>
+        <details class="klappe">
+          <summary>Mit welchem Auto fahre ich?</summary>
+          <div class="klappe-inhalt"><span class="offen">folgt</span></div>
+        </details>
+        <details class="klappe">
+          <summary>Was gilt, wenn ich absagen muss?</summary>
+          <div class="klappe-inhalt"><span class="offen">folgt</span></div>
+        </details>
+      </div>
     </div>
   </section>
 
